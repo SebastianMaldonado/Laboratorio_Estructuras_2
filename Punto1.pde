@@ -39,16 +39,20 @@ Nodo Sumar(Nodo temp){
 }
 
 
-void Sobrante (int Pasar){
+void Sobrante (int Pasar, Nodo res){
   if ((Pasar/10) > 0){
-    //Se crea nuevo nodo
-    //Nodo Nuevo = new Nodo (); 
+    //Se crea nuevo nodo 
+    Nodo P = res;
     int contador = 10;
     int num = ((Pasar % contador) / (contador / 10));
     while (num != 0){
       print(num + "  " + contador +"  ");
-      num = ((Pasar % contador) / (contador / 10));
+      Nodo Nuevo = new Nodo (num, 1);
+      P.next = Nuevo;
+      P = P.next;
+      
       contador = contador * 10;
+      num = ((Pasar % contador) / (contador / 10));
     }
   }
 }
