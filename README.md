@@ -8,3 +8,9 @@ A partir de esto, con el lenguaje de programación en Java y processing, utiliza
 Una vez guardado cada dígito, se procede a hacer la operación de suma o multiplicación, en este caso, extraemos el numero como String y poderlo pasar como parametró de BigIntege. Esta clase nos facilita el trabajo ya que tiene métodos como `.add()` y `.multiply()` para realizar las operaciones.
 
 Una vez terminamos de operar, descomponemos el resultado y lo pasamos a una lista final para imprimir el resultado al usuario
+
+
+## Razonamiento del punto 2
+Teniendo en cuenta la base de datos y su oragnizacio _colegio, gimnasio, bar, tienda y parque_, se crean variables boleanas con los nombres `car#`, seguidamente se instancia un vector que contendra los barrios que mejor coinciden y por último, se crea una lista temporal con sus nodos inicializados en 0.
+
+Con el método `LeerArchivo`
