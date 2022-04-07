@@ -24,3 +24,8 @@ cond1: Colegio, cond2: Gimnasio, cond3: Bar, cond4: Tienda, cond5: Parque
 Pasandole a la variable `punt`del método `AsignarPunt()`el puntaje de coincidencia con el  barrio.
 
 El método `MostrarCoincidencias()`, permite la lectura del archivo `temp.txt` con los niveles de coincidencia de la búsqueda. De está forma, se peude seleccionar los barrios con mayor nivel de coincidencia con la búsqueda y se escogerá por mayor nivel de coincidencia y orden de la lista
+
+### Realizado por
+- Cuellar Ballesteros Luis Ángel
+- Gómez Rosales Laura Sofía
+- Maldonado Gastelbondo Sebastián
