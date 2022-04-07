@@ -2,6 +2,7 @@ import java.math.BigInteger;
 
 int cant = 3, cont = 1;
 boolean nueva_lista = true;
+String opcion = "";
 Nodo PTR = new Nodo (1, cant);
 Nodo PTR1 = new Nodo (1, cant);
 Nodo PTR2 = new Nodo (1, cant);
@@ -13,6 +14,8 @@ void setup(){
   res.datos[2] = 1;
   Nodo Q = res;
   
+  println("Qué operación desea hacer, + para sumar, * para multiplicar");
+  
   for (int i = 1; i <= 15; i++){
     Nodo P = new Nodo (1,3);
     P.datos[1] = 1;
@@ -20,11 +23,6 @@ void setup(){
     Q.next = P;
     Q = Q.next;
   }
-  
-  //println(Extraer_num(res, 2));
-  
-  
-  //Sumar(res);
 }
 
 
@@ -66,6 +64,7 @@ Nodo Sumar(Nodo temp){
   
   for (int i = 1; i <= temp.cont; i++){
     Sumatoria = Sumatoria.add(Extraer_num (temp, i));  
+    println("Suma: " + Extraer_num (temp, i));
   }
   
   println(Sumatoria+"  " + "Suma");
@@ -113,7 +112,6 @@ Nodo Descomponer (BigInteger numero, Nodo res){
       P.next = Nuevo;
       P = P.next;
       
-      println(P.dato);
       contador = contador.multiply(i10);
       num = ((numero.mod(contador)).divide((contador.divide(i10)))).intValueExact();
     }
@@ -136,14 +134,38 @@ void Transferir (Nodo PTR, int cont){
 
 String num = "";
 void keyPressed(){
+  if ((key == '+') || (key == '*')){
+    opcion = "" + key;
+    
+    if (opcion.equals("+")) {
+      if (PTR1.next != null){
+        Sumar(PTR1);
+      } else {
+        println("Por favor, ingrese un número");
+      }
+    } else if (opcion.equals("*")) {
+      if (PTR1.next != null){
+        Multiplicar(PTR1);
+      } else {
+        println("Por favor, ingrese un número");
+      }
+    }
+  }
+  
   if (key == ENTER){
     nueva_lista = true;
     BigInteger numero = new BigInteger (num);
     Descomponer(numero, PTR1);
     Transferir(PTR1, cont);
-    println(Extraer_num(PTR1, cont) + "  " + cont);
-    cont = cont + 1;
+    println(Extraer_num(PTR1, 1) + "  " + 1);
+    println(Extraer_num(PTR1, 2) + "  " + 2);
+    println(Extraer_num(PTR1, 3) + "  " + 3);
     num = "";
+    if (cont > 3){
+      Sumar(PTR1);
+      Multiplicar(PTR1);
+    }
+    cont = cont + 1;
   
   } else if ((key == '1') || (key == '2') || (key == '3')
   || (key == '4') || (key == '5') || (key == '6')
@@ -176,6 +198,9 @@ Nodo AgregarNodo (Nodo temp, int dato, int cont, int cant){
     return temp;
   }
 }
+
+
+
 
 public class Nodo{
     private int[] datos = new int[20];
