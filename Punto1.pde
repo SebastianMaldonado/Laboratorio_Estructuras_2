@@ -1,5 +1,5 @@
 void setup(){
-
+  Sobrante(12345);
 }
 
 void draw(){
@@ -13,6 +13,7 @@ void draw(){
 Nodo Sumar(Nodo temp){
     Nodo res = new Nodo(0,1);
     int Pasar = 0;
+    Nodo P = temp;
     
     while (temp.next != null){
     //Sumar los valores del Nodo Contenedor
@@ -20,20 +21,38 @@ Nodo Sumar(Nodo temp){
     for (int i = 0; i <= temp.cont; i++){
       sumatoria = sumatoria + temp.datos[i];
     }
-  
+    
     //Guardar resultado en Nodo Resultante
     res.dato = sumatoria % 10;
     Pasar = sumatoria / 10;
+    
+    res = res.next;
+    temp = temp.next;
   }
   
-  if ((Pasar/10) > 0){
-    //Se crea nuevo nodo
-  }
+  Sobrante(Pasar);
+  
   
   
   
   return res;
 }
+
+
+void Sobrante (int Pasar){
+  if ((Pasar/10) > 0){
+    //Se crea nuevo nodo
+    //Nodo Nuevo = new Nodo (); 
+    int contador = 10;
+    int num = ((Pasar % contador) / (contador / 10));
+    while (num != 0){
+      print(num + "  " + contador +"  ");
+      num = ((Pasar % contador) / (contador / 10));
+      contador = contador * 10;
+    }
+  }
+}
+
 
 /*
 -----------------------------------------|Resta|-----------------------------------------
