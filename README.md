@@ -14,3 +14,6 @@ Una vez terminamos de operar, descomponemos el resultado y lo pasamos a una list
 Teniendo en cuenta la base de datos y su oragnizacio _colegio, gimnasio, bar, tienda y parque_, se crean variables boleanas con los nombres `car#`, seguidamente se instancia un vector que contendra los barrios que mejor coinciden y por último, se crea una lista temporal con su PTR inicializado en `"-"` y el resto nodos se inicializan en `0`.
 
 Con el método `LeerArchivo()`, se recorre el archivo `data.txt` y se extrae el nombre del barrio y los valores entre 0 y 1. Como resultado, el método generará un nuevo archivo llamado temp.txt con el nivel de coincidencia de la búsqueda.
+
+En la "Asignación de Coincidencia", introducimos el nombre del barrio y sus características como los parámetros
+cond1: Colegio, cond2: Gimnasio, cond3: Bar, cond4: Tienda, cond5: Parque. Pasandole a la variable `punt`del método `AsignarPunt()`el puntaje de coincidencia con el  barrio
