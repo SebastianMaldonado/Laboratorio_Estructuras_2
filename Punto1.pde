@@ -3,6 +3,8 @@ import java.math.BigInteger;
 int cant = 3, cont = 1;
 boolean nueva_lista = true;
 Nodo PTR = new Nodo (1, cant);
+Nodo PTR1 = new Nodo (1, cant);
+Nodo PTR2 = new Nodo (1, cant);
 Nodo Nuevo = PTR;
 
 void setup(){
@@ -11,7 +13,7 @@ void setup(){
   res.datos[2] = 1;
   Nodo Q = res;
   
-  for (int i = 1; i <= 1; i++){
+  for (int i = 1; i <= 15; i++){
     Nodo P = new Nodo (1,3);
     P.datos[1] = 1;
     P.datos[2] = 2;
@@ -19,10 +21,10 @@ void setup(){
     Q = Q.next;
   }
   
-  println(Extraer_num(res, 2));
+  //println(Extraer_num(res, 2));
   
   
-  Sumar(res);
+  //Sumar(res);
 }
 
 
@@ -90,20 +92,21 @@ Nodo Multiplicar(Nodo temp){
 }
 
 
-void Descomponer (BigInteger numero, Nodo res){
+Nodo Descomponer (BigInteger numero, Nodo res){
   BigInteger i10 = new BigInteger ("10");
   BigInteger i0 = new BigInteger ("10");
   BigInteger contador = new BigInteger ("10");
+  Nodo P = res;
   
   
   if (numero.divide(i10).compareTo(i0) == 1){
     //Se crea nuevo nodo 
-    Nodo P = res;
+    P = res;
     int cont = 0;
     int num = ((numero.mod(contador)).divide((contador.divide(i10)))).intValueExact();
     while (num != 0){
       cont = cont + 1;
-      Nodo Nuevo = new Nodo (num, 1);
+      Nodo Nuevo = new Nodo (num, 3);
       P.next = Nuevo;
       P = P.next;
       
@@ -111,12 +114,16 @@ void Descomponer (BigInteger numero, Nodo res){
       num = ((numero.mod(contador)).divide((contador.divide(i10)))).intValueExact();
     }
   }
+  
+  return P;
 }
 
 void Transferir (Nodo PTR, int cont){
   Nodo P = PTR;
+  println("Primer dato: " + (PTR.next).dato);
   while (P.next != null){
     P.datos[cont] = P.dato;
+    println(P.dato + "  " + P.datos[cont] + "  " + cont);
     P = P.next;
   }
 }
@@ -127,12 +134,18 @@ void keyPressed(){
   if (key == ENTER){
     nueva_lista = true;
     BigInteger numero = new BigInteger (num);
-    println(numero + "  " + cont);
-    Descomponer(numero, PTR);
-    Transferir(PTR, cont);
-    Sumar(PTR);
     cont = cont + 1;
-    println(PTR.datos[2]);
+    
+    
+    
+    Descomponer(numero, PTR1);
+    Transferir(PTR1, cont);
+    println(Extraer_num(PTR1, cont) + "  " + cont);
+    //Sumar(PTR);
+    cont = cont + 1;
+    println(PTR1.datos[2]);
+    num = "";
+    println("dato actual", PTR.dato);
   
   } else if ((key == '1') || (key == '2') || (key == '3')
   || (key == '4') || (key == '5') || (key == '6')
@@ -140,10 +153,14 @@ void keyPressed(){
   || (key == '0')){
     if (nueva_lista){
       nueva_lista = false;
+      PTR1.datos[cont] = 1;
+      Nodo P = PTR1;
     }
     num = num + key;
   } else if ((key == '-') && (nueva_lista)) { 
-    nueva_lista = false;
+      nueva_lista = false;
+      PTR1.datos[cont] = 1;
+      Nodo P = PTR1;
     num = num + key;
   }
 }
