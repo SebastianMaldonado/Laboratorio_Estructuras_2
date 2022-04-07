@@ -1,4 +1,4 @@
-mport java.math.BigInteger;
+import java.math.BigInteger;
 boolean nueva_lista = true;
 int cont = 1;
 int cant = 3;
