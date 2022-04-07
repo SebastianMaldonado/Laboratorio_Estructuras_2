@@ -1,3 +1,7 @@
+import java.math.BigInteger;
+
+int cant = 3, cont = 1;
+boolean nueva_lista = true;
 Nodo PTR = new Nodo (1, cant);
 Nodo Nuevo = PTR;
 
