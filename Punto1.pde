@@ -34,12 +34,15 @@ void draw(){
 
 BigInteger Extraer_num(Nodo res, int lista){
   //Leer Vector
-  String num = "" + (res.datos[lista] * (res.next).datos[lista]);
-  res = res.next;
-  while (res.next != null){
-    num = num + res.datos[lista];
-    res = res.next;
+  Nodo P = res.next;
+  String num = "";
+  
+  while (P.next != null){
+    num = P.datos[lista] + num;
+    P = P.next;
   }
+  num = (res.datos[lista] * P.datos[lista]) + num;
+
   BigInteger numero = new BigInteger (num);
   return numero;
 }
@@ -99,7 +102,7 @@ Nodo Descomponer (BigInteger numero, Nodo res){
   Nodo P = res;
   
   
-  if (numero.divide(i10).compareTo(i0) == 1){
+  if (numero.divide(i10).compareTo(i0) == 1) {
     //Se crea nuevo nodo 
     P = res;
     int cont = 0;
@@ -110,9 +113,11 @@ Nodo Descomponer (BigInteger numero, Nodo res){
       P.next = Nuevo;
       P = P.next;
       
+      println(P.dato);
       contador = contador.multiply(i10);
       num = ((numero.mod(contador)).divide((contador.divide(i10)))).intValueExact();
     }
+    
   }
   
   return P;
@@ -121,9 +126,9 @@ Nodo Descomponer (BigInteger numero, Nodo res){
 void Transferir (Nodo PTR, int cont){
   Nodo P = PTR;
   println("Primer dato: " + (PTR.next).dato);
-  while (P.next != null){
+  while (P != null){
+    println(P.dato);
     P.datos[cont] = P.dato;
-    println(P.dato + "  " + P.datos[cont] + "  " + cont);
     P = P.next;
   }
 }
@@ -134,18 +139,11 @@ void keyPressed(){
   if (key == ENTER){
     nueva_lista = true;
     BigInteger numero = new BigInteger (num);
-    cont = cont + 1;
-    
-    
-    
     Descomponer(numero, PTR1);
     Transferir(PTR1, cont);
     println(Extraer_num(PTR1, cont) + "  " + cont);
-    //Sumar(PTR);
     cont = cont + 1;
-    println(PTR1.datos[2]);
     num = "";
-    println("dato actual", PTR.dato);
   
   } else if ((key == '1') || (key == '2') || (key == '3')
   || (key == '4') || (key == '5') || (key == '6')
@@ -153,15 +151,12 @@ void keyPressed(){
   || (key == '0')){
     if (nueva_lista){
       nueva_lista = false;
-      PTR1.datos[cont] = 1;
-      Nodo P = PTR1;
+      PTR1.dato = 1;
     }
     num = num + key;
   } else if ((key == '-') && (nueva_lista)) { 
       nueva_lista = false;
-      PTR1.datos[cont] = 1;
-      Nodo P = PTR1;
-    num = num + key;
+      PTR1.dato = -1;
   }
 }
 
@@ -181,9 +176,6 @@ Nodo AgregarNodo (Nodo temp, int dato, int cont, int cant){
     return temp;
   }
 }
-
-
-
 
 public class Nodo{
     private int[] datos = new int[20];
